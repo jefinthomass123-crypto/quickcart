@@ -7,7 +7,14 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <ProductList products={products} />
+
+      <main className="main-content">
+        {products && products.length > 0 ? (
+          <ProductList products={products} />
+        ) : (
+          <p>No products available</p>
+        )}
+      </main>
     </div>
   );
 }

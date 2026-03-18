@@ -26,3 +26,17 @@
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: purple;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a2ea6;
+}
