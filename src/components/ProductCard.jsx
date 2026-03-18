@@ -1,6 +1,6 @@
 import '../styles/ProductCard.css';
 
-function ProductCard({ product }) {
+function ProductCard({ product, addToCart }) {
   return (
     <div className="product-card">
       <img src={product.image} alt={product.name} />
@@ -10,5 +10,8 @@ function ProductCard({ product }) {
     </div>
   );
 }
+<button onClick={() => addToCart(product)}>
+  Add to Cart
+</button>
 
 export default ProductCard;
