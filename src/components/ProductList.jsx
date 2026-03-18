@@ -1,11 +1,16 @@
 import ProductCard from './ProductCard';
+import '../styles/ProductList.css';
 
 function ProductList({ products }) {
   return (
-    <div>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="product-list">
+      <h2>Our Products</h2>
+
+      <div className="product-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }

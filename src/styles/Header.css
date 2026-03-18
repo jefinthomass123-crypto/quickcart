@@ -1,6 +1,10 @@
 .header {
-  background: purple;
+  background: linear-gradient(135deg, purple, #6a5acd);
   color: white;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
+}
+
+.header h1 {
+  margin: 0;
 }
