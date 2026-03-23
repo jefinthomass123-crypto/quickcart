@@ -7,11 +7,13 @@ function ProductCard({ product, addToCart }) {
       <h3>{product.name}</h3>
       <p>{product.description}</p>
       <p>${product.price}</p>
+
+      {/* ✅ FIX: button inside component */}
+      <button onClick={() => addToCart(product)}>
+        Add to Cart
+      </button>
     </div>
   );
 }
-<button onClick={() => addToCart(product)}>
-  Add to Cart
-</button>
 
 export default ProductCard;
