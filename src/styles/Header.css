@@ -2,9 +2,55 @@
   background: linear-gradient(135deg, purple, #6a5acd);
   color: white;
   padding: 25px;
-  text-align: center;
+  width: 100%; /* 🔥 important */
 }
 
-.header h1 {
+/* FLEX CONTAINER */
+.header-container {
+  display: flex;
+  align-items: center;
+  width: 100%; /* 🔥 important */
+}
+
+/* LEFT SIDE */
+.header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* TITLE */
+.header-title {
   margin: 0;
+}
+
+/* SUBTITLE */
+.header-subtitle {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+/* RIGHT SIDE ICON */
+.cart-icon {
+  margin-left: auto; /* 🔥 pushes to right */
+  position: relative;
+  cursor: pointer;
+  font-size: 26px;
+}
+
+/* BADGE */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.cart-icon {
+  position: absolute;
+  right: 30px;
+  top: 30px;
 }
