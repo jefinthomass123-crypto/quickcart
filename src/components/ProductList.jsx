@@ -1,20 +1,15 @@
-import ProductCard from './ProductCard';
-import '../styles/ProductList.css';
+﻿import React from 'react';
 
 function ProductList({ products, addToCart }) {
   return (
-    <div className="product-list">
-      <h2>Our Products</h2>
-
-      <div className="product-grid">
-        {products.map((product) => (
-          <ProductCard 
-  key={product.id} 
-  product={product} 
-  addToCart={addToCart}
-/>
-        ))}
-      </div>
+    <div className='products'>
+      {products.map(p => (
+        <div key={p.id} className='product-card'>
+          <h3>{p.name}</h3>
+          <p>₹{p.price}</p>
+          <button onClick={() => addToCart(p)}>Add to Cart</button>
+        </div>
+      ))}
     </div>
   );
 }

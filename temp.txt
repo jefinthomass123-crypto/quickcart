@@ -1,0 +1,19 @@
+<div className='cart'>
+  <h3>Your Cart</h3>
+
+  {cart.map(item => (
+    <div key={item.id} className='cart-item'>
+      <strong>{item.name}</strong>
+      <p>?{item.price} × {item.quantity}</p>
+
+      <button onClick={() => increaseQuantity(item.id)}>+</button>
+      <button onClick={() => decreaseQuantity(item.id)}>-</button>
+      <button onClick={() => removeItem(item.id)}>Remove</button>
+    </div>
+  ))}
+
+  <hr />
+
+  <h3>Total Items: {getTotalItems()}</h3>
+  <h2>Total Price: ?{getTotalPrice()}</h2>
+</div>

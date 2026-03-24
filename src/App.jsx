@@ -1,92 +1,30 @@
-import { useState } from "react";
-import Header from './components/header';
-import ProductList from './components/ProductList';
-import CartSidebar from './components/CartSidebar';
-import { products } from './data/products';
-import './styles/App.css';
+﻿import React, { useContext } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import { CartContext } from './context/CartContext.jsx';
+
+import Home from './pages/Home.jsx';
+import CartPage from './pages/CartPage.jsx';
+import Category from './pages/Category.jsx';
 
 function App() {
-
-  // 🛒 State
-  const [cart, setCart] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  // ➕ Add to cart
-  const addToCart = (product) => {
-    const existingItem = cart.find(item => item.id === product.id);
-
-    if (existingItem) {
-      setCart(
-        cart.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }
-  };
-
-  // ➕ Increase quantity
-  const increaseQuantity = (id) => {
-    setCart(cart.map(item =>
-      item.id === id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    ));
-  };
-
-  // ➖ Decrease quantity
-  const decreaseQuantity = (id) => {
-    setCart(
-      cart
-        .map(item =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        )
-        .filter(item => item.quantity > 0)
-    );
-  };
-
-  // ❌ Remove item
-  const removeFromCart = (id) => {
-    setCart(cart.filter(item => item.id !== id));
-  };
-
-  // 🔢 Total items count
-  const getTotalItems = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
-  };
+  const { getTotalItems } = useContext(CartContext);
 
   return (
-    <div className="app">
+    <div>
+      <h1>QuickCart 🚀</h1>
 
-      {/* ✅ Header with cart count */}
-      <Header
-        cartCount={getTotalItems()}
-        onCartClick={() => setIsCartOpen(true)}
-      />
+      <nav style={{margin:'10px'}}>
+        <Link to="/" style={{marginRight:'10px'}}>Home</Link>
+        <Link to="/cart" style={{marginRight:'10px'}}>Cart ({getTotalItems()})</Link>
+        <Link to="/category/Electronics" style={{marginRight:'10px'}}>Electronics</Link>
+        <Link to="/category/Home">Home</Link>
+      </nav>
 
-      {/* Products */}
-      <main className="main-content">
-        <ProductList 
-          products={products} 
-          addToCart={addToCart} 
-        />
-      </main>
-
-      {/* 🛒 Cart Sidebar */}
-      <CartSidebar
-        cart={cart}
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        removeFromCart={removeFromCart}
-      />
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/category/:categoryName" element={<Category />} />
+      </Routes>
     </div>
   );
 }
